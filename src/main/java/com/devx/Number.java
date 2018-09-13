@@ -1,12 +1,10 @@
 package com.devx;
 
-import java.lang.NumberFormatException;
-import java.lang.IllegalArgumentException;
-
 public class Number {
     //Digits are stored in VALUE from right to left
     private int[] value;//Array of number digits
     private boolean isNegative;
+    private static final int radix = 10;
 
     public Number(){
         /*
@@ -34,14 +32,18 @@ public class Number {
     }
 
     public Number(int number){
-
+        this(Integer.toString(number));
     }
 
-    private boolean isNumber(String number){
-        try{
-            int n = Integer.parseInt(number);
-        }catch (NumberFormatException exc){
-            return  false;
+    //TODO:after testing change modfier to private
+    public boolean isNumber(String number){
+        if(number.isEmpty()) return false;
+        for(int i = 0; i < number.length(); i++) {
+            if(i == 0 && number.charAt(i) == '-') {
+                if(number.length() == 1) return false;
+                else continue;
+            }
+            if(Character.digit(number.charAt(i),radix) < 0) return false;
         }
         return true;
     }
