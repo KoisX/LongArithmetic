@@ -2,15 +2,24 @@ package com.devx;
 
 public class Number {
     //Digits are stored in VALUE from right to left
-    private int[] value;//Array of number digits
-    private boolean isNegative;
-    private static final int radix = 10;
+    public int[] value;//Array of number digits
+    public boolean isNegative;
+    public static final int radix = 10;
 
     public Number(){
         /*
         * value is set null by default,
         * isNegative is set 0 by default
         * */
+    }
+
+    //deep cloning
+    public Number(Number old){
+        this.value = new int[old.value.length];
+        this.isNegative = old.isNegative;
+        for(int i=0; i<old.value.length; ++i){
+            this.value[i] = old.value[i];
+        }
     }
 
     public Number(String number){
@@ -35,7 +44,7 @@ public class Number {
         this(Integer.toString(number));
     }
 
-    //TODO:after testing change modfier to private
+    //TODO:after testing change modifier to private
     public boolean isNumber(String number){
         if(number.isEmpty()) return false;
         for(int i = 0; i < number.length(); i++) {
@@ -47,4 +56,5 @@ public class Number {
         }
         return true;
     }
+
 }

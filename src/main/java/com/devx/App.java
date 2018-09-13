@@ -4,6 +4,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        Number number = new Number("-12345");
+        NumberContext context = new NumberContext();
+        context.setStrategy(new NumberAdd());
+        Number res = context.executeStrategy(new Number("110"), new Number("50"));
+
+
     }
 }
