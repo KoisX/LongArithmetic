@@ -44,11 +44,12 @@ public class Number {
     Initialize Number with an array of len length
     and fill it with values from v (free space may appear)
     */
-    public Number(int[] v, int len){
+    public Number(int[] v, int len, boolean isNeg){
         if(len<v.length) {
             throw new IllegalArgumentException("Length parameter should be equal or greater then the length of the array ");
         }
         this.value = new int[len];
+        this.isNegative = isNeg;
         for(int i=0;i<v.length; ++i){
             this.value[i] = v[i];
         }

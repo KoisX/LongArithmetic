@@ -15,7 +15,7 @@ public class NumberAdd implements OperationStrategy {
             length = b.value.length + 1;
         }
 
-        Number res = new Number(b.value, length+1);
+        Number res = new Number(b.value, length+1, b.isNegative);
 
         //addition
         for(int i=0; i<length; ++i){
@@ -35,6 +35,6 @@ public class NumberAdd implements OperationStrategy {
             zeros++;
         }
 
-        return  new Number(Arrays.copyOfRange(res.value, 0, res.value.length-zeros), res.value.length-zeros);
+        return  new Number(Arrays.copyOfRange(res.value, 0, res.value.length-zeros), res.value.length-zeros, res.isNegative);
     }
 }
