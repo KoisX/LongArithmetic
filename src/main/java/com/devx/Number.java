@@ -48,11 +48,17 @@ public class Number {
         if(len<v.length) {
             throw new IllegalArgumentException("Length parameter should be equal or greater then the length of the array ");
         }
+        // TODO: this(len, isNeg);
         this.value = new int[len];
         this.isNegative = isNeg;
         for(int i=0;i<v.length; ++i){
             this.value[i] = v[i];
         }
+    }
+
+    public Number(int len, boolean isNeg){
+        this.value = new int[len];
+        this.isNegative = isNeg;
     }
 
     public Number(int number){
