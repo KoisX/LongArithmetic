@@ -10,5 +10,6 @@ public class App
         Number res = context.executeStrategy(new Number("100"), new Number("5"));
         //context.setBooleanStrategy(new NumberEqualComparison());
         //boolean resbool = context.executeBooleanStrategy(new Number("222"), new Number("222"));
-    }
+
+   }
 }

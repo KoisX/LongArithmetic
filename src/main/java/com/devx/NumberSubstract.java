@@ -73,20 +73,20 @@ public class NumberSubstract implements OperationStrategy {
         return new ComparAndLenRes(k, length);
     }
 
-    private class ComparAndLenRes{
+    private class ComparAndLenRes {
         private NumberComparison k;
         private int len;
 
-        public ComparAndLenRes(NumberComparison n, int len){
+        public ComparAndLenRes(NumberComparison n, int len) {
             this.len = len;
             this.k = n;
         }
 
-        public NumberComparison getK(){
-            return  k;
+        public NumberComparison getK() {
+            return k;
         }
 
-        public int getLen(){
+        public int getLen() {
             return len;
         }
     }
