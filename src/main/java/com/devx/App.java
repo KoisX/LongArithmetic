@@ -8,7 +8,7 @@ public class App
         NumberContext context = new NumberContext();
         //context.setStrategy(new NumberMultiplication());
         //Number res = context.executeStrategy(new Number("20"), new Number("0"));
-        context.setBooleanStrategy(new NumberLessComparison());
-        boolean resbool = context.executeBooleanStrategy(new Number("20"), new Number("21"));
+        context.setBooleanStrategy(new NumberGreaterComparison());
+        boolean resbool = context.executeBooleanStrategy(new Number("21"), new Number("20"));
     }
 }
