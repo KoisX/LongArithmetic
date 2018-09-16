@@ -6,6 +6,7 @@ package com.devx;
 */
 public class NumberContext {
     private OperationStrategy strategy;
+    private BooleanStrategy booleanStrategy;
 
     public NumberContext(){
 
@@ -15,8 +16,16 @@ public class NumberContext {
         this.strategy = strategy;
     }
 
+    public void setBooleanStrategy(BooleanStrategy booleanStrategy){
+        this.booleanStrategy = booleanStrategy;
+    }
+
     public Number executeStrategy(Number a, Number b){
         return strategy.execute(a,b);
+    }
+
+    public boolean executeBooleanStrategy(Number a, Number b){
+        return booleanStrategy.execute(a,b);
     }
 }
 
