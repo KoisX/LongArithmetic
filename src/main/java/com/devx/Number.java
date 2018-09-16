@@ -78,4 +78,12 @@ public class Number {
         return true;
     }
 
+    public void setNegative(){
+        isNegative = true;
+    }
+
+    public void setPositive(){
+        isNegative = false;
+    }
+
 }
