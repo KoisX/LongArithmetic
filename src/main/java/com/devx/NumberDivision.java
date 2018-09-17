@@ -3,14 +3,15 @@ package com.devx;
 public class NumberDivision implements OperationStrategy {
     @Override
     public Number execute(Number a, Number b) {
-        //change isNeg when implementin signed operations
-        Number res =  new Number(a.value.length, false);
-        Number curValue =  new Number(a.value.length, false);
-        for(int i = a.value.length-1; i>=0; --i){
+        return new Number(
 
+        );
+    }
+
+    private void levelUp(Number n){
+        for(int i=n.value.length; i>=1; --i ){
+            n.value[i] = n.value[i-1];
         }
 
-        //заглушка
-        return  new Number();
     }
 }
