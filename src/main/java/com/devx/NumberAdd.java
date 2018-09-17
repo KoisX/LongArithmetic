@@ -31,10 +31,10 @@ public class NumberAdd implements OperationStrategy {
                 b.setPositive();
                 //if a is greater then b absolutely
                 if(ctx.executeBooleanStrategy(a,b)){
-                    res = ctx.executeStrategy(b,a);
+                    res = ctx.executeStrategy(a,b);
                 }else{
                     //if a is less then b absolutely
-                    res = ctx.executeStrategy(a,b);
+                    res = ctx.executeStrategy(b,a);
                     res.setNegative();
                 }
                 b.setPositive();
