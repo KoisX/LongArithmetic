@@ -20,7 +20,7 @@ public class NumberSubstract implements OperationStrategy {
 
         //result
         Number z = new Number(length, false);
-        for(int i=0; i<(length-1); ++i){
+        for(int i=0; i<(length-2); ++i){
             if(i<(length-1)){
                 x.value[i+1]--;
                 z.value[i] += Number.radix + x.value[i];
