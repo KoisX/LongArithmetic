@@ -86,4 +86,8 @@ public class Number {
         isNegative = false;
     }
 
+    public void setSign(boolean sign){
+        isNegative = !sign;
+    }
+
 }

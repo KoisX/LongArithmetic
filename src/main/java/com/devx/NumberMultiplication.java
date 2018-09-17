@@ -16,10 +16,14 @@ public class NumberMultiplication implements OperationStrategy {
             temp.value[k] %= Number.radix;
         }
 
+        /*
+        Find the sign of the result
+        we'll use boolean algebra simpleficvation
+        of the expression !(a.isNegative ^ b.isNegative)
+        */
+        temp.setSign(a.isNegative == b.isNegative);
+
         //cut the first digit if it is zero, i.e. 0144
-        /*if(res.value[res.value.length-1]==0){
-            res.value = Arrays.copyOfRange(res.value, 0, res.value.length);
-        }*/
         int zeros=0;
         for(int i=temp.value.length-1; i>0; --i){
             if(temp.value[i]!=0) break;

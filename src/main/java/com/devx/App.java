@@ -6,8 +6,8 @@ public class App
     {
         //Just for testing sake. TODO:get rid of it
         NumberContext context = new NumberContext();
-        context.setStrategy(new NumberAdd());
-        Number res = context.executeStrategy(new Number("10000"), new Number("-10001"));
+        context.setStrategy(new NumberMultiplication());
+        Number res = context.executeStrategy(new Number("-2"), new Number("-3"));
         //context.setBooleanStrategy(new NumberEqualComparison());
         //boolean resbool = context.executeBooleanStrategy(new Number("222"), new Number("222"));
 
