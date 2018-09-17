@@ -17,6 +17,8 @@ public class NumberAdd implements OperationStrategy {
             ctx.setStrategy(new NumberSubstract());
             if(a.isNegative){
                 a.setPositive();
+
+                //TODO:refactor res = ...
                 //if a is greater then b absolutely
                 if(ctx.executeBooleanStrategy(a,b)){
                     res = ctx.executeStrategy(a,b);
