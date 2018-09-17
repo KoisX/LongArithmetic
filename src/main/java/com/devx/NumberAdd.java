@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class NumberAdd implements OperationStrategy {
 
+    @Override
     public Number execute(Number a, Number b) {
         /*In this section we will take into account
          * different signs of operands*/

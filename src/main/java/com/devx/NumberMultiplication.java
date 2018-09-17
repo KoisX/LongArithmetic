@@ -3,6 +3,8 @@ package com.devx;
 import java.util.Arrays;
 
 public class NumberMultiplication implements OperationStrategy {
+
+    @Override
     public Number execute(Number a, Number b) {
 
         if(a.value[0]==0 || b.value[0]==0)
