@@ -1,5 +1,7 @@
 package com.devx;
 
+import java.util.Arrays;
+
 public class NumberSubstract implements OperationStrategy {
 
     public Number execute(Number a, Number b) {
@@ -12,7 +14,13 @@ public class NumberSubstract implements OperationStrategy {
                 res.value[i+1]--;
             }
         }
-        return res;
+        int zeros = 0;
+        for (int i = res.value.length - 1; i > 0; --i) {
+            if (res.value[i] != 0) break;
+            zeros++;
+        }
+
+        return new Number(Arrays.copyOfRange(res.value, 0, res.value.length - zeros), res.value.length - zeros, res.isNegative);
     }
 
 
