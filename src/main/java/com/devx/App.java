@@ -11,6 +11,6 @@ public class App
         //Number res = context.executeStrategy(new Number("-10"), new Number("-6"));
         //context.setBooleanStrategy(new NumberLessComparison());
         //boolean resbool = context.executeBooleanStrategy(new Number("2"), new Number("6"));
-        Number res = context.executeOperationWithShortStrategy(new Number(11), 5);
+        Number res = context.executeOperationWithShortStrategy(new Number(11), -5);
    }
 }
