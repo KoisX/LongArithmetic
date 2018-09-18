@@ -14,8 +14,8 @@ public class NumberDivisionOnShort implements OperationWithShortStrategy {
         int remainder = 0, cur;
         for(int i = res.value.length-1; i>=0; --i){
             cur = remainder * Number.radix + a.value[i];
-            res.value[i] = cur/n;
-            remainder = cur % n;
+            res.value[i] = cur/Math.abs(n);
+            remainder = cur % Math.abs(n);
         }
 
         /*
