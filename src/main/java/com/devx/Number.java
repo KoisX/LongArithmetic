@@ -103,6 +103,7 @@ public class Number {
 
     public String toString(){
         StringBuilder sb = new StringBuilder();
+        if(this.isNegative) sb.append("-");
         for(int i=this.value.length-1; i>=0; --i){
             sb.append(value[i]);
         }

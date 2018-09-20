@@ -45,7 +45,44 @@ public class NumberTest {
             $(-2, 30),
             $(30, -2),
             $(-2,-7),
-            $(-7,-2)
+            $(-7,-2),
+            $(3,3),
+            $(-7,-7),
+            $(15,4),
+            $(6,3000),
+            $(3221, 6),
+            $(-3333, -1),
+            $(-333,1),
+            $(33333, -21)
+        );
+    }
+
+    private static final Object[] getNumbersPositive(){
+        return $(
+                $(2,5),
+                $(5,2),
+                $(2,3),
+                $(15,4),
+                $(0,0),
+                $(2,9),
+                $(9,2),
+                $(2,7),
+                $(7,2),
+                $(19,1),
+                $(5,5),
+                $(2, 30),
+                $(30, 2),
+                $(2,7),
+                $(7,2),
+                $(3,3),
+                $(7,7),
+                $(15,4),
+                $(6,3000),
+                $(3221, 6),
+                $(3333, 1),
+                $(333,1),
+                $(33333, 21),
+                $(100216, 12)
         );
     }
 
@@ -70,11 +107,63 @@ public class NumberTest {
     }
 
     @Test
+    @Parameters(method="getNumbers")
+    public void operationGreaterComparison(int a, int b){
+        NumberContext ctx = new NumberContext();
+        ctx.setBooleanStrategy(new NumberGreaterComparison());
+        boolean exp = a>b;
+        boolean res = ctx.executeBooleanStrategy(new Number(a),new Number(b));
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
+    @Test
+    @Parameters(method="getNumbers")
+    public void operationLessOrEqualComparison(int a, int b){
+        NumberContext ctx = new NumberContext();
+        ctx.setBooleanStrategy(new NumberLessOrEqualComparison());
+        boolean exp = a<=b;
+        boolean res = ctx.executeBooleanStrategy(new Number(a),new Number(b));
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
+    @Test
+    @Parameters(method="getNumbers")
+    public void operationMult(int a, int b){
+        NumberContext ctx = new NumberContext();
+        ctx.setStrategy(new NumberMultiplication());
+        int exp = a*b;
+        int res = Integer.parseInt(ctx.executeStrategy(new Number(a),new Number(b)).toString());
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
+    @Test
+    @Parameters(method="getNumbersPositive")
+    public void operationMod(int a, int b){
+        NumberContext ctx = new NumberContext();
+        ctx.setStrategy(new NumberMod());
+        int exp = a%b;
+        int res = Integer.parseInt(ctx.executeStrategy(new Number(a),new Number(b)).toString());
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
+    @Test
+    @Parameters(method="getNumbersPositive")
+    public void operationDiv(int a, int b){
+        NumberContext ctx = new NumberContext();
+        ctx.setStrategy(new NumberDivision());
+        int exp = a/b;
+        int res = Integer.parseInt(ctx.executeStrategy(new Number(a),new Number(b)).toString());
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
+    @Test
     @Parameters(method="getCharacs")
     public void characterIsTrue(String n){
         Number number = new Number(n);
         assertEquals(true, number.isNumber(n));
     }
+
+
 
     @Test(expected = IllegalArgumentException.class)
     @Parameters(method = "getWrongNumber")

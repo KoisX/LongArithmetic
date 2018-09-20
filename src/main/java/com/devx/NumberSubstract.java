@@ -6,11 +6,6 @@ public class NumberSubstract implements OperationStrategy {
 
     @Override
     public Number execute(Number a, Number b) {
-
-        //case when answer is equal to zero
-        if(a.value[0]==0 || b.value[0]==0)
-            return new Number(0);
-
         /*In this section we will take into account
          * different signs of operands*/
         NumberContext ctx = new NumberContext();
@@ -41,7 +36,7 @@ public class NumberSubstract implements OperationStrategy {
                 res = ctx.executeStrategy(b, a);
             }else{
                 //case when b is greater then a absolutely
-                b.setNegative();
+                a.setNegative();
                 res = ctx.executeStrategy(b,a);
             }
 
@@ -61,7 +56,11 @@ public class NumberSubstract implements OperationStrategy {
 
 
         res = new Number(a.value, a.value.length + 1, a.isNegative);
+        //res = new Number(a.value, a.value.length, a.isNegative);
+
         Number bNew = new Number(b.value, Math.max(a.value.length + 1, b.value.length + 1 ), b.isNegative);
+        //Number bNew = new Number(b.value, Math.max(a.value.length, b.value.length ), b.isNegative);
+
         for(int i=0; i<res.value.length; ++i){
             res.value[i] -= bNew.value[i];
             if(res.value[i]<0){

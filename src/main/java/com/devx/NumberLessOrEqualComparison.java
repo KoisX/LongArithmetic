@@ -6,14 +6,14 @@ public class NumberLessOrEqualComparison implements BooleanStrategy {
     public boolean execute(Number a, Number b) {
 
         if(a.isNegative!=b.isNegative){
-            if(a.isNegative) return false;
-            else return true;
+            if(a.isNegative) return true;
+            else return false;
         }
 
         //case when both number are negative
         if(a.isNegative && b.isNegative){
             int length = a.value.length;
-            if(a.value.length >= b.value.length){
+            if(a.value.length > b.value.length){
                 return true;
             }
             else{
@@ -38,10 +38,10 @@ public class NumberLessOrEqualComparison implements BooleanStrategy {
             return false;
         }
         else{
-            if(a.value.length <= b.value.length){
-                return true;
-            }
-            else{
+            //if(a.value.length <= b.value.length){
+                //return true;
+            //}
+            //else{
                 for(int i=0; i<length; ++i){
                     if(a.value[i]>b.value[i]){
                         return false;
@@ -51,7 +51,7 @@ public class NumberLessOrEqualComparison implements BooleanStrategy {
                     }
                 }
             }
-        }
+        //}
         return false;
     }
 }
