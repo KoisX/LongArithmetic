@@ -6,10 +6,6 @@ public class NumberMultiplication implements OperationStrategy {
 
     @Override
     public Number execute(Number a, Number b) {
-
-        if(a.value[0]==0 || b.value[0]==0)
-            return new Number(0);
-
         int length = a.value.length + b.value.length + 1;
         Number temp = new Number(length, false);
         for(int i=0; i<a.value.length; ++i){

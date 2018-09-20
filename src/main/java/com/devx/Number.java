@@ -31,6 +31,17 @@ public class Number {
                     isNegative = true;
                 }
             }
+
+            //getting rid of first zeros
+            if(number.length()>1 && number.charAt(0)=='0') {
+                int zeros = 0;
+                for (int i = 0; i < number.length(); ++i) {
+                    if (number.charAt(i)=='0') zeros++;
+                    else break;
+                }
+                number = number.substring(zeros);
+            }
+
             char[] digits = number.toCharArray();
             value = new int[digits.length];
             for(int i=0; i<digits.length; ++i){
@@ -90,4 +101,11 @@ public class Number {
         isNegative = !sign;
     }
 
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(int i=this.value.length-1; i>=0; --i){
+            sb.append(value[i]);
+        }
+        return  sb.toString();
+    }
 }
