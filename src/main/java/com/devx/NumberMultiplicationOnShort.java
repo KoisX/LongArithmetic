@@ -5,7 +5,7 @@ public class NumberMultiplicationOnShort implements OperationWithShortStrategy {
     public Number execute(Number a, int n) {
         Number res = new Number(a.value.length, false);
         int r=0;
-        for(int i=0; i<res.value.length | (r!=0); ++i){
+        for(int i=0; i<res.value.length /*| (r!=0)*/; ++i){
             res.value[i]  =a.value[i] * Math.abs(n) + r;
             r = res.value[i]/Number.radix;
             res.value[i] -= r * Number.radix;
