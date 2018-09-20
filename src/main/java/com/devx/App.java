@@ -6,6 +6,6 @@ public class App
         //Just for testing sake. TODO:get rid of it
         NumberContext context = new NumberContext();
         context.setStrategy(new NumberSubstract());
-        Number res = context.executeStrategy(new Number("6"), new Number("3000"));
+        Number res = context.executeStrategy(new Number("15"), new Number("4"));
     }
 }
