@@ -6,8 +6,8 @@ public class NumberLessComparison implements BooleanStrategy {
     public boolean execute(Number a, Number b) {
 
         if(a.isNegative!=b.isNegative){
-            if(a.isNegative) return false;
-            else return true;
+            if(a.isNegative) return true;
+            else return false;
         }
 
         //case when both number are negative

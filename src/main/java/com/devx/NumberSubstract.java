@@ -51,6 +51,14 @@ public class NumberSubstract implements OperationStrategy {
         }
 
         //this code will be reached only in case when both operands are positive
+        NumberContext compar = new NumberContext();
+        compar.setBooleanStrategy(new NumberLessComparison());
+        if(compar.executeBooleanStrategy(a,b)){
+            res = execute(b,a);
+            res.setNegative();
+            return res;
+        }
+
 
         res = new Number(a.value, a.value.length + 1, a.isNegative);
         Number bNew = new Number(b.value, Math.max(a.value.length + 1, b.value.length + 1 ), b.isNegative);
