@@ -55,11 +55,9 @@ public class NumberSubstract implements OperationStrategy {
         }
 
 
-        res = new Number(a.value, a.value.length + 1, a.isNegative);
-        //res = new Number(a.value, a.value.length, a.isNegative);
+        res = new Number(a.value, a.value.length , a.isNegative);
 
-        Number bNew = new Number(b.value, Math.max(a.value.length + 1, b.value.length + 1 ), b.isNegative);
-        //Number bNew = new Number(b.value, Math.max(a.value.length, b.value.length ), b.isNegative);
+        Number bNew = new Number(b.value, Math.max(a.value.length , b.value.length ), b.isNegative);
 
         for(int i=0; i<res.value.length; ++i){
             res.value[i] -= bNew.value[i];
