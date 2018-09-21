@@ -75,5 +75,15 @@ public class NumberSubstract implements OperationStrategy {
         return new Number(Arrays.copyOfRange(res.value, 0, res.value.length - zeros), res.value.length - zeros, res.isNegative);
     }
 
+    @Override
+    public Number execute(Number a, Number b, int mod) {
+        if(mod<=0){
+            throw new IllegalArgumentException("Mod must be >= 0");
+        }
+        NumberContext modCtx = new NumberContext();
+        modCtx.setStrategy(new NumberMod());
+        return modCtx.executeStrategy(execute(a,b), new Number(mod));
+    }
+
 
 }

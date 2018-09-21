@@ -34,4 +34,14 @@ public class NumberMultiplication implements OperationStrategy {
 
         return  new Number(Arrays.copyOfRange(temp.value, 0, temp.value.length-zeros), temp.value.length-zeros, temp.isNegative);
     }
+
+    @Override
+    public Number execute(Number a, Number b, int mod) {
+        if(mod<=0){
+            throw new IllegalArgumentException("Mod must be >= 0");
+        }
+        NumberContext modCtx = new NumberContext();
+        modCtx.setStrategy(new NumberMod());
+        return modCtx.executeStrategy(execute(a,b), new Number(mod));
+    }
 }

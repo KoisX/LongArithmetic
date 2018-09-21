@@ -107,6 +107,33 @@ public class NumberTest {
     }
 
     @Test
+    @Parameters(method = "getNumbers")
+    public void operationAddModulus(int a, int b){
+        NumberContext ctx = new NumberContext();
+        NumberContext ctxMod = new NumberContext();
+        ctx.setStrategy(new NumberAdd());
+        ctxMod.setStrategy(new NumberMod());
+        Number t = ctx.executeStrategy(new Number(a),new Number(b));
+        int exp = (a+b)%2;
+        int res = Integer.parseInt(ctxMod.executeStrategy(t, new Number(2)).toString());
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
+    @Test
+    @Parameters(method = "getNumbers")
+    public void operationSubstrModulus(int a, int b){
+        NumberContext ctx = new NumberContext();
+        NumberContext ctxMod = new NumberContext();
+        ctx.setStrategy(new NumberSubstract());
+        ctxMod.setStrategy(new NumberMod());
+        Number t = ctx.executeStrategy(new Number(a),new Number(b));
+        int exp = (a-b)%2;
+        int res = Integer.parseInt(ctxMod.executeStrategy(t, new Number(2)).toString());
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
+
+    @Test
     @Parameters(method="getNumbers")
     public void operationLessComparison(int a, int b){
         NumberContext ctx = new NumberContext();
