@@ -19,7 +19,7 @@ public class NumberGreaterComparison implements BooleanStrategy {
                 if (a.value.length < b.value.length) {
                     return true;
                 } else {
-                    for (int i = 0; i < length; ++i) {
+                    for (int i = length-1; i >=0; --i) {
                         if (a.value[i] > b.value[i]) {
                             return false;
                         }
@@ -39,7 +39,7 @@ public class NumberGreaterComparison implements BooleanStrategy {
             if (a.value.length < b.value.length) {
                 return false;
             } else {
-                for (int i = 0; i < length; ++i) {
+                for (int i = length-1; i >=0; --i) {
                     if (a.value[i] > b.value[i]) {
                         return true;
                     }
