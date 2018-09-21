@@ -21,7 +21,7 @@ public class NumberLessComparison implements BooleanStrategy {
                     return false;
                 }
                 else{
-                    for(int i=0; i<length; ++i){
+                    for(int i=length-1; i>=0; --i){
                         if(a.value[i]>b.value[i]){
                             return true;
                         }
@@ -42,7 +42,7 @@ public class NumberLessComparison implements BooleanStrategy {
                 return true;
             }
             else{
-                for(int i=0; i<length; ++i){//з ыншого боку треба звырять!!!!!
+                for(int i=length-1; i>=0; --i){//з ыншого боку треба звырять!!!!!
                     if(a.value[i]>b.value[i]){
                         return false;
                     }
