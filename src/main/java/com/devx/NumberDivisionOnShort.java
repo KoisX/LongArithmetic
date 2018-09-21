@@ -2,7 +2,7 @@ package com.devx;
 
 import java.util.Arrays;
 
-public class NumberDivisionOnShort implements OperationWithShortStrategy {
+public class NumberDivisionOnShort implements OperationWithNumber {
     @Override
     public Number execute(Number a, int n) {
 

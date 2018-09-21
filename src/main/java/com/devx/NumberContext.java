@@ -7,7 +7,7 @@ package com.devx;
 public class NumberContext {
     private OperationStrategy strategy;
     private BooleanStrategy booleanStrategy;
-    private OperationWithShortStrategy shortStrategy;
+    private OperationWithNumber shortStrategy;
 
     public NumberContext(){
 
@@ -17,7 +17,7 @@ public class NumberContext {
         this.strategy = strategy;
     }
 
-    public void setShortStrategy(OperationWithShortStrategy strategy) {
+    public void setShortStrategy(OperationWithNumber strategy) {
         this.shortStrategy = strategy;
     }
 

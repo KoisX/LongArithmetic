@@ -1,6 +1,6 @@
 package com.devx;
 
-public class NumberMultiplicationOnShort implements OperationWithShortStrategy {
+public class NumberMultiplicationOnShort implements OperationWithNumber {
     @Override
     public Number execute(Number a, int n) {
         Number res = new Number(a.value.length, false);

@@ -96,6 +96,27 @@ public class NumberTest {
         );
     }
 
+    public static final Object[] getNumAndPower(){
+        return $(
+                $(2,5),
+                $(5,2),
+                $(2,3),
+                $(15,4),
+                $(-3,2),
+                $(-3,3)
+        );
+    }
+
+    @Test
+    @Parameters(method = "getNumAndPower")
+    public void operationPower(int a, int b){
+        NumberContext ctx = new NumberContext();
+        ctx.setShortStrategy(new NumberPower());
+        int exp = (int)Math.pow(a,b);
+        int res = Integer.parseInt(ctx.executeOperationWithShortStrategy(new Number(a),b).toString());
+        assertTrue("Expected "+exp+" got "+res,exp==res);
+    }
+
     @Test
     @Parameters(method="getNumbers")
     public void operationMinus(int a, int b){
