@@ -21,8 +21,8 @@ public class NumberLessOrEqualComparison implements BooleanStrategy {
                     return false;
                 }
                 else{
-                    for(int i=0; i<length; ++i){
-                        if(a.value[i]>=b.value[i]){
+                    for(int i=length-1; i>=0; --i){
+                        if(a.value[i]>b.value[i]){
                             return true;
                         }
                         if(a.value[i]<b.value[i]){
@@ -38,20 +38,20 @@ public class NumberLessOrEqualComparison implements BooleanStrategy {
             return false;
         }
         else{
-            //if(a.value.length <= b.value.length){
-                //return true;
-            //}
-            //else{
-                for(int i=0; i<length; ++i){
+            if(a.value.length < b.value.length){
+                return true;
+            }
+            else{
+                for(int i=length-1; i>=0; --i){//з ыншого боку треба звырять!!!!!
                     if(a.value[i]>b.value[i]){
                         return false;
                     }
-                    if(a.value[i]<=b.value[i]){
+                    if(a.value[i]<b.value[i]){
                         return true;
                     }
                 }
             }
-        //}
-        return false;
+        }
+        return true;
     }
 }
