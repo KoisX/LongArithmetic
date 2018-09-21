@@ -1,5 +1,7 @@
 package com.devx;
 
+import java.util.Arrays;
+
 public class Number {
     //Digits are stored in VALUE from right to left
     public int[] value;//Array of number digits
@@ -108,5 +110,51 @@ public class Number {
             sb.append(Math.abs(value[i]));
         }
         return  sb.toString();
+    }
+
+    /*Attention!
+    * Sqrt unary operation is implemented inside
+    * Number class*/
+    public Number sqrt(){
+        Number cur;
+        int l, r, m, curDigit;
+
+        NumberContext ctx = new NumberContext();
+        ctx.setBooleanStrategy(new NumberLessOrEqualComparison());
+        ctx.setStrategy(new NumberMultiplication());
+
+        int pos = (value.length+1)/2;
+        cur = new Number(pos, false);
+        pos--;
+
+        while (pos>=0){
+            l=0;
+            r = radix;
+            curDigit = 0;
+
+            while(l<=r){
+                m = (l+r)>>1;
+                cur.value[pos] = m;
+                //cond: cur * cur <= this
+                if(ctx.executeBooleanStrategy(ctx.executeStrategy(cur,cur) ,this)){
+                    curDigit = m;
+                    l = m+1;
+                }else{
+                    r = m-1;
+                }
+            }
+
+            cur.value[pos] = curDigit;
+            pos--;
+
+        }
+
+        int zeros=0;
+        for(int i=cur.value.length-1; i>0; --i){
+            if(cur.value[i]!=0) break;
+            zeros++;
+        }
+
+        return  new Number(Arrays.copyOfRange(cur.value, 0, cur.value.length-zeros), cur.value.length-zeros, false);
     }
 }
