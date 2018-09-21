@@ -112,6 +112,11 @@ public class Number {
         return  sb.toString();
     }
 
+    public boolean isZero(){
+        if(value.length==1 && value[0] == 0) return true;
+        else return false;
+    }
+
     /*Attention!
     * Sqrt unary operation is implemented inside
     * Number class*/

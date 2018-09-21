@@ -3,6 +3,10 @@ package com.devx;
 public class NumberMod implements OperationStrategy {
     @Override
     public Number execute(Number a, Number b) {
+        if(b.isZero()){
+            throw new IllegalArgumentException("Second argument must != 0");
+        }
+
         NumberContext mult, subst, leq;
 
         mult = new NumberContext();
