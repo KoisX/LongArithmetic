@@ -116,6 +116,10 @@ public class Number {
     * Sqrt unary operation is implemented inside
     * Number class*/
     public Number sqrt(){
+        if(isNegative){
+            throw new IllegalArgumentException("Sqrt can only be applied to numbers, which are >= 0");
+        }
+
         Number cur;
         int l, r, m, curDigit;
 
