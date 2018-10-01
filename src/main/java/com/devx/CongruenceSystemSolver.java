@@ -19,7 +19,7 @@ public class CongruenceSystemSolver {
         Number x = new Number(0);
         Number mod = new Number(1);
 
-        final Number zero = new Number(0);
+        final Number zero = new Number("0");
 
         NumberContext multEq, subtrLess, modulus, divGr, add;
 
@@ -51,7 +51,7 @@ public class CongruenceSystemSolver {
             x2 = new Number(0);
             r = new Number(1);
 
-            while(multEq.executeBooleanStrategy(r, zero)){
+            while(!multEq.executeBooleanStrategy(r, zero)){
                 q = divGr.executeStrategy(r1, r2);
                 t = subtrLess.executeStrategy(x1, multEq.executeStrategy(q, x2));
                 x1 = new Number(x2);
@@ -67,12 +67,15 @@ public class CongruenceSystemSolver {
                 throw new SystemHasNoSolutionException("Congruance system has no solution");
             }
 
-            x = add.executeStrategy(x, multEq.executeStrategy(mod, multEq.executeStrategy(b, divGr.executeStrategy(x1, r1))));
-            mod = multEq.executeStrategy(mod, divGr.executeStrategy(M[i], r1));
+            //
+            // x = add.executeStrategy(x, multEq.executeStrategy(mod, multEq.executeStrategy(b, divGr.executeStrategy(x1, r1))));
+            x = add.executeStrategy(x, divGr.executeStrategy(multEq.executeStrategy(mod, multEq.executeStrategy(b, x1)),r1));
+            //mod = multEq.executeStrategy(mod, divGr.executeStrategy(M[i], r1));
+            mod = divGr.executeStrategy(multEq.executeStrategy(mod, M[i]), r1);
 
         }
 
-        if(subtrLess.executeBooleanStrategy(x, zero)||(divGr.executeBooleanStrategy(x, mod)&&multEq.executeBooleanStrategy(x, mod))){
+        if(subtrLess.executeBooleanStrategy(x, zero)||(divGr.executeBooleanStrategy(x, mod) || multEq.executeBooleanStrategy(x, mod))){
             x = subtrLess.executeStrategy(x, multEq.executeStrategy(mod, divGr.executeStrategy(x, mod)));
         }
 

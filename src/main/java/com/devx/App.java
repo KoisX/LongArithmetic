@@ -76,7 +76,7 @@ public class App
                         ctx.setBooleanStrategy(new NumberEqualComparison());
                         break;
                     case 11:
-                        throw new UnsupportedOperationException("Not Implemented");
+                        break;
                     case 12:
                         exit = true;
                         break;
@@ -117,7 +117,16 @@ public class App
                 System.out.println("Result:"+ctx.executeBooleanStrategy(a,b));
                 break;
             case 11:
-                throw new UnsupportedOperationException("Not Implemented");
+                Number[] A = new Number[]{new Number(2), new Number(3), new Number(2)};
+                Number[] B = new Number[]{new Number(2), new Number(2), new Number(4)};
+                Number[] M = new Number[]{new Number(6), new Number(7), new Number(8)};
+                try {
+                    CongruenceResult res = CongruenceSystemSolver.solve(A, B, M , 3);
+                    System.out.println("x="+res.val+" (mod "+res.modulus+")");
+                } catch (SystemHasNoSolutionException e) {
+                    System.out.println(e.getMessage());
+                }
+
 
         }
 
