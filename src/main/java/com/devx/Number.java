@@ -106,7 +106,14 @@ public class Number {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         if(this.isNegative) sb.append("-");
-        for(int i=this.value.length-1; i>=0; --i){
+
+        int zeros = 0;
+        for (int i = this.value.length - 1; i > 0; --i) {
+            if (this.value[i] != 0) break;
+            zeros++;
+        }
+
+        for(int i=this.value.length-zeros-1; i>=0; --i){//-1
             sb.append(Math.abs(value[i]));
         }
         return  sb.toString();

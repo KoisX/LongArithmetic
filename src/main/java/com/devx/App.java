@@ -117,11 +117,13 @@ public class App
                 System.out.println("Result:"+ctx.executeBooleanStrategy(a,b));
                 break;
             case 11:
-                Number[] A = new Number[]{new Number(2), new Number(3), new Number(2)};
-                Number[] B = new Number[]{new Number(2), new Number(2), new Number(4)};
-                Number[] M = new Number[]{new Number(6), new Number(7), new Number(8)};
                 try {
-                    CongruenceResult res = CongruenceSystemSolver.solve(A, B, M , 3);
+                    int num = getNumOfEquations();
+                    Number[] A = new Number[num];
+                    Number[] B = new Number[num];
+                    Number[] M = new Number[num];
+                    getSystemValues(A, B, M, num);
+                    CongruenceResult res = CongruenceSystemSolver.solve(A, B, M , num);
                     System.out.println("x="+res.val+" (mod "+res.modulus+")");
                 } catch (SystemHasNoSolutionException e) {
                     System.out.println(e.getMessage());
@@ -156,5 +158,34 @@ public class App
             }
         }
 
+    }
+
+    public static int getNumOfEquations(){
+        System.out.println("Format of input: Ax=B(mod M)");
+        System.out.print("Enter number of equations:");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+
+    public static void getSystemValues(Number[] A, Number[] B, Number[] M, int n){
+
+        System.out.println("Enter the values of A array");
+        for(int i=0; i<n; ++i){
+            System.out.print(i+1+") ");
+            A[i] = new Number(scanner.nextLine());
+            System.out.println();
+        }
+        System.out.println("Enter the values of B array");
+        for(int i=0; i<n; ++i){
+            System.out.print(i+1+") ");
+            B[i] = new Number(scanner.nextLine());
+            System.out.println();
+        }
+        System.out.println("Enter the values of M array");
+        for(int i=0; i<n; ++i){
+            System.out.print(i+1+") ");
+            M[i] = new Number(scanner.nextLine());
+            System.out.println();
+        }
     }
 }
