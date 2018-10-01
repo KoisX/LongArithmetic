@@ -98,11 +98,24 @@ public class App
             case 5:// %
                 a = getNumber("First ");
                 b = getNumber("Second ");
+                boolean decision = shouldCalcWithModulus();
+                int m;
+                if(decision){
+                    m = getModulus();
+                    System.out.println("Result:"+ctx.executeStrategy(a,b, m));
+                    break;
+                }
                 System.out.println("Result:"+ctx.executeStrategy(a,b));
                 break;
             case 6:
                 a = getNumber("First ");
                 n = getInt("Second ");
+                decision = shouldCalcWithModulus();
+                if(decision){
+                    m = getModulus();
+                    System.out.println("Result:"+ctx.executeOperationWithShortStrategy(a, n, m));
+                    break;
+                }
                 System.out.println("Result:"+ctx.executeOperationWithShortStrategy(a,n));
                 break;
             case 7:
@@ -142,7 +155,13 @@ public class App
 
     public static int getInt(String name){
         System.out.print(name+" operand:");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static int getModulus(){
+        System.out.print("Enter the value of the modulus:");
+        String s = scanner.nextLine();
+        return Integer.parseInt(s);
     }
 
     public static boolean shouldContinue(){
@@ -158,6 +177,20 @@ public class App
             }
         }
 
+    }
+
+    public static boolean shouldCalcWithModulus(){
+        System.out.println("Would you like to calculate with a modulus?");
+        while(true){
+            System.out.print("(Y/N):");
+            String r = scanner.nextLine();
+            if(!(r.equals("Y") || r.equals("y") || r.equals("n") || r.equals("N"))){
+                System.out.println("Incorrect input. Try again.");
+            }else{
+                if(r.equals("Y") || r.equals("y")) return true;
+                if(r.equals("n") || r.equals("N")) return false;
+            }
+        }
     }
 
     public static int getNumOfEquations(){
