@@ -30,4 +30,9 @@ public class NumberDivisionOnShort implements OperationWithNumber {
 
         return res;
     }
+
+    @Override
+    public Number execute(Number a, int b, int mod) {
+        return null;
+    }
 }
