@@ -76,7 +76,7 @@ public class App
                         ctx.setBooleanStrategy(new NumberEqualComparison());
                         break;
                     case 11:
-                        throw new UnsupportedOperationException("Not Implemented");
+                        break;
                     case 12:
                         exit = true;
                         break;
@@ -98,11 +98,24 @@ public class App
             case 5:// %
                 a = getNumber("First ");
                 b = getNumber("Second ");
+                boolean decision = shouldCalcWithModulus();
+                int m;
+                if(decision){
+                    m = getModulus();
+                    System.out.println("Result:"+ctx.executeStrategy(a,b, m));
+                    break;
+                }
                 System.out.println("Result:"+ctx.executeStrategy(a,b));
                 break;
             case 6:
                 a = getNumber("First ");
                 n = getInt("Second ");
+                decision = shouldCalcWithModulus();
+                if(decision){
+                    m = getModulus();
+                    System.out.println("Result:"+ctx.executeOperationWithShortStrategy(a, n, m));
+                    break;
+                }
                 System.out.println("Result:"+ctx.executeOperationWithShortStrategy(a,n));
                 break;
             case 7:
@@ -117,7 +130,18 @@ public class App
                 System.out.println("Result:"+ctx.executeBooleanStrategy(a,b));
                 break;
             case 11:
-                throw new UnsupportedOperationException("Not Implemented");
+                try {
+                    int num = getNumOfEquations();
+                    Number[] A = new Number[num];
+                    Number[] B = new Number[num];
+                    Number[] M = new Number[num];
+                    getSystemValues(A, B, M, num);
+                    CongruenceResult res = CongruenceSystemSolver.solve(A, B, M , num);
+                    System.out.println("x="+res.val+" (mod "+res.modulus+")");
+                } catch (SystemHasNoSolutionException e) {
+                    System.out.println(e.getMessage());
+                }
+
 
         }
 
@@ -131,7 +155,13 @@ public class App
 
     public static int getInt(String name){
         System.out.print(name+" operand:");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public static int getModulus(){
+        System.out.print("Enter the value of the modulus:");
+        String s = scanner.nextLine();
+        return Integer.parseInt(s);
     }
 
     public static boolean shouldContinue(){
@@ -147,5 +177,48 @@ public class App
             }
         }
 
+    }
+
+    public static boolean shouldCalcWithModulus(){
+        System.out.println("Would you like to calculate with a modulus?");
+        while(true){
+            System.out.print("(Y/N):");
+            String r = scanner.nextLine();
+            if(!(r.equals("Y") || r.equals("y") || r.equals("n") || r.equals("N"))){
+                System.out.println("Incorrect input. Try again.");
+            }else{
+                if(r.equals("Y") || r.equals("y")) return true;
+                if(r.equals("n") || r.equals("N")) return false;
+            }
+        }
+    }
+
+    public static int getNumOfEquations(){
+        System.out.println("Format of input: Ax=B(mod M)");
+        System.out.print("Enter number of equations:");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+
+    public static void getSystemValues(Number[] A, Number[] B, Number[] M, int n){
+
+        System.out.println("Enter the values of A array");
+        for(int i=0; i<n; ++i){
+            System.out.print(i+1+") ");
+            A[i] = new Number(scanner.nextLine());
+            System.out.println();
+        }
+        System.out.println("Enter the values of B array");
+        for(int i=0; i<n; ++i){
+            System.out.print(i+1+") ");
+            B[i] = new Number(scanner.nextLine());
+            System.out.println();
+        }
+        System.out.println("Enter the values of M array");
+        for(int i=0; i<n; ++i){
+            System.out.print(i+1+") ");
+            M[i] = new Number(scanner.nextLine());
+            System.out.println();
+        }
     }
 }
